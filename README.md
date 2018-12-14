@@ -1,8 +1,8 @@
-Laravel 4 Sharpspring
+Laravel 4/5 Sharpspring
 ===================
 
 ## Installation
-For use with Laravel 4. This package can be installed through Composer.
+For use with Laravel 4/5. This package can be installed through Composer.
 
 ```
 {
@@ -26,22 +26,23 @@ This package also comes with a facade, which provides an easy way to call the th
 
 ```
 
-'aliases' => array(
+'aliases' => [
 	'...',
 	'LaravelSharpspring' => 'Innesm4\LaravelSharpspring\LaravelSharpspringFacade',
-)
+]
 ```
 
 You can publish the config file of the package using artisan
 
 ```
-php artisan config:publish innesm4/laravel-sharpspring
+php artisan vendor:publish --provider="Innesm4\LaravelSharpspring\LaravelSharpspringServiceProvider"
+
 ```
 
 After the config file has been created locate at:
 
 ```
-/app/config/packages/innesm4/laravel-sharpspring/
+/app/config/sharpspring.php
 ```
 
 And enter API details:
