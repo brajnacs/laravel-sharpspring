@@ -28,7 +28,7 @@ This package also comes with a facade, which provides an easy way to call the th
 
 'aliases' => [
 	'...',
-	'LaravelSharpspring' => 'Innesm4\LaravelSharpspring\LaravelSharpspringFacade',
+	'LaravelSharpspring' => 'Innesm4\LaravelSharpspring\Facades\LaravelSharpspring',
 ]
 ```
 
