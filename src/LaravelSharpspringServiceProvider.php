@@ -2,14 +2,8 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class LaravelSharpspringServiceProvider extends ServiceProvider {
-
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
+class LaravelSharpspringServiceProvider extends ServiceProvider
+{
 
     /**
      * Bootstrap the application events.
@@ -18,8 +12,9 @@ class LaravelSharpspringServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->package('innesm4/laravel-sharpspring');
-    } 
+        $this->publishes([__DIR__ . '/config/sharpspring.php' => config_path('sharpspring.php')], 'config');
+    }
+
     /**
      * Register the service provider.
      *
@@ -27,15 +22,13 @@ class LaravelSharpspringServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bind('Innesm4\LaravelSharpspring\LaravelSharpspring', function($app){
-
-            $this->app['config']->package('innesm4/laravel-sharpspring', 'Innesm4\LaravelSharpspring\LaravelSharpspring');
-
-            return new LaravelSharpspring($app['config']->get('laravel-sharpspring::accountID'), $app['config']->get('laravel-sharpspring::secretKey'));
+        $this->mergeConfigFrom(__DIR__ . '/config/sharpspring.php', 'sharpspring');
+        $this->app->singleton(LaravelSharpspring::class, function ($app) {
+            $config = $app->make('config')->get('sharpspring');
+            return new LaravelSharpspring($config['accountID'], $config['secretKey']);
         });
 
-        $this->app->singleton('laravel-sharpspring', 'Innesm4\LaravelSharpspring\LaravelSharpspring');
-
+        $this->app->alias(LaravelSharpspring::class, 'laravel-sharpspring');
     }
 
     /**
@@ -46,7 +39,6 @@ class LaravelSharpspringServiceProvider extends ServiceProvider {
 
     public function provides()
     {
-        return ['laravel-sharpspring'];
+        return ['laravel-sharpspring', LaravelSharpspring::class];
     }
-
 }
