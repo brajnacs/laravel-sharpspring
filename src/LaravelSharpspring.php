@@ -32,7 +32,7 @@ class LaravelSharpspring {
     {
       $queryString = http_build_query(array('accountID' => $this->accountID, 'secretKey' => $this->secretKey));
 
-      $url = "http://api.sharpspring.com/pubapi/v1/?$queryString";                             
+      $url = "https://api.sharpspring.com/pubapi/v1/?$queryString";
       $data = json_encode($data);
       $ch = curl_init($url);
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
