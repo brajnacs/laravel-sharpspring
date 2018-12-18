@@ -23,5 +23,15 @@
             "Innesm4\\LaravelSharpspring\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Innesm4\\LaravelSharpspring\\LaravelSharpspringServiceProvider"
+            ],
+            "aliases": {
+                "LaravelSharpspring": "Innesm4\\LaravelSharpspring\\Facades\\LaravelSharpspring"
+            }
+        }
+    }
 }
